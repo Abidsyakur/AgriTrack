@@ -62,28 +62,33 @@ Tiga lapisan: Presentation (WinForms, satu jendela dengan panel yang berganti), 
 
 ```mermaid
 flowchart TB
-  subgraph PL["Presentation: WinForms"]
-    LF[FormLogin]
-    MF[FormMain + sidebar]
-    UC[UserControl per modul]
+  subgraph PL["Presentation (WinForms)"]
+    FLOGIN["FormLogin"]
+    FMAIN["FormMain dan sidebar"]
+    UCTRL["UserControl per modul"]
   end
   subgraph BL["Business Logic"]
-    SS[Session]
-    AS[AuthService]
-    PS[PanenService]
-    RS[ReportService]
+    SESI["Session"]
+    AUTH["AuthService"]
+    PANEN["PanenService"]
+    LAPOR["ReportService"]
   end
   subgraph DL["Data Access"]
-    RP[Repository]
-    DB[DbHelper]
+    REPO["Repository"]
+    DBH["DbHelper"]
   end
-  SQ[(agritrack.db)]
-  LF --> AS
-  MF --> UC
-  UC --> AS & PS & RS
-  AS --> SS
-  AS & PS & RS --> RP
-  RP --> DB --> SQ
+  SQLITE[("agritrack.db")]
+  FLOGIN --> AUTH
+  FMAIN --> UCTRL
+  UCTRL --> AUTH
+  UCTRL --> PANEN
+  UCTRL --> LAPOR
+  AUTH --> SESI
+  AUTH --> REPO
+  PANEN --> REPO
+  LAPOR --> REPO
+  REPO --> DBH
+  DBH --> SQLITE
 ```
 
 ## Skema Database
@@ -92,9 +97,9 @@ Empat tabel, memenuhi 3NF.
 
 ```mermaid
 erDiagram
-  tb_petani ||--o{ tb_panen : menyetor
+  tb_petani ||--o{ tb_panen : "menyetor"
   tb_komoditas ||--o{ tb_panen : "dijual sebagai"
-  tb_pengguna ||--o{ tb_panen : mencatat
+  tb_pengguna ||--o{ tb_panen : "mencatat"
   tb_pengguna {
     INTEGER id_pengguna PK
     TEXT username UK
