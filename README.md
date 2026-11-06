@@ -3,7 +3,7 @@
 Aplikasi desktop offline untuk mengelola operasional pergudangan hasil bumi di Koperasi Unit Desa (KUD) atau pengepul lokal.
 
 > **Status:** tahap perancangan selesai (PRD v1.1, SRS v1.1, dokumentasi desain). Implementasi kode sedang/akan dikerjakan.
-> Proyek Akhir Mata Kuliah Pemrograman Lanjut. Penulis: [Nama Mahasiswa]
+> Proyek Akhir Mata Kuliah Pemrograman Lanjut. Penulis: Kelompok 9
 
 ## Latar Belakang
 
